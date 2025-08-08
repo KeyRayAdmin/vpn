@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,152 +10,832 @@
             padding: 0;
             box-sizing: border-box;
         }
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
             line-height: 1.6;
-            background-color: #f4f4f4;
+            background-color: #0a0a0f;
+            color: #ffffff;
+            overflow-x: hidden;
         }
+
+        /* Header */
         header {
-            background: #1a1a1a;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
-        nav a {
-            color: #fff;
-            margin: 0 15px;
-            text-decoration: none;
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
             font-weight: bold;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+        }
+
+        /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1535223289827-42f1e9919769') center/cover no-repeat;
-            color: #fff;
-            height: 80vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 20px;
+            padding: 0 2rem;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0f 100%);
+            position: relative;
+            overflow: hidden;
         }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(0,212,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
         }
+
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        .btn {
-            display: inline-block;
-            background: #ff6600;
-            color: #fff;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: 0.3s;
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
         }
-        .btn:hover {
-            background: #cc5200;
-        }
-        .pricing {
-            padding: 50px 20px;
-            background: #fff;
+
+        .stat {
             text-align: center;
         }
-        .pricing h2 {
-            margin-bottom: 20px;
+
+        .stat-number {
             font-size: 2rem;
+            font-weight: bold;
+            color: #00d4ff;
         }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: #ffffff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #00d4ff;
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 8rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 8rem 2rem;
+            background: rgba(0, 212, 255, 0.02);
+        }
+
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
         .pricing-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
         }
-        .card {
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .card h3 {
-            margin-bottom: 10px;
-        }
-        .price {
-            font-size: 1.5rem;
-            margin: 10px 0;
-            color: #ff6600;
-        }
-        footer {
-            background: #1a1a1a;
-            color: #fff;
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
+            position: relative;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
-        @media(max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .pricing-card.popular {
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-period {
+            opacity: 0.7;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .plan-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00d4ff;
+            font-weight: bold;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 8rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer.active {
+            max-height: 200px;
+            padding: 1.5rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 2rem;
+            text-align: center;
+            background: rgba(0, 212, 255, 0.02);
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .contact-method:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-            .hero p {
-                font-size: 1rem;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-stats {
+                gap: 1.5rem;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .features-grid,
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+            }
+            
+            .contact-methods {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Dark mode toggle */
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(0, 212, 255, 0.2);
+        }
+
+        /* Loading spinner */
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid #00d4ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
     <header>
         <nav>
-            <a href="#">Home</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#buy">Buy</a>
+            <div class="logo">SecureVPN</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
         </nav>
-    </header><section class="hero">
-    <h1>SecureVPN</h1>
-    <p>Protect your privacy and access the internet without limits</p>
-    <a href="#pricing" class="btn">Get Started</a>
-</section>
+    </header>
 
-<section id="pricing" class="pricing">
-    <h2>Our Plans</h2>
-    <div class="pricing-cards">
-        <div class="card">
-            <h3>Basic</h3>
-            <p class="price">$5/month</p>
-            <p>✔ Unlimited Bandwidth</p>
-            <p>✔ 1 Device</p>
-            <p>✔ 5 Server Locations</p>
-            <a href="#buy" class="btn">Buy Now</a>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>No Apps Required - Pure IKEv2 VPN</h1>
+            <p>Connect instantly using your device's built-in VPN settings. No downloads, no installations - just add our IKEv2 configuration to Android settings and enjoy unlimited devices with premium security.</p>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Unlimited Devices</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">IKEv2</div>
+                    <div class="stat-label">Native Protocol</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Apps Needed</div>
+                </div>
+            </div>
+            
+            <div class="cta-buttons">
+                <a href="#pricing" class="btn">
+                    Start Free Trial
+                    <div class="spinner"></div>
+                </a>
+                <a href="#features" class="btn btn-secondary">Learn More</a>
+            </div>
         </div>
-        <div class="card">
-            <h3>Standard</h3>
-            <p class="price">$10/month</p>
-            <p>✔ Unlimited Bandwidth</p>
-            <p>✔ 3 Devices</p>
-            <p>✔ 20 Server Locations</p>
-            <a href="#buy" class="btn">Buy Now</a>
+    </section>
+
+    <section id="features" class="features">
+        <div class="section-header">
+            <h2>Why Choose IKEv2 VPN?</h2>
+            <p>Native protocol support means faster connections, better battery life, and zero app requirements</p>
         </div>
-        <div class="card">
-            <h3>Premium</h3>
-            <p class="price">$15/month</p>
-            <p>✔ Unlimited Bandwidth</p>
-            <p>✔ 10 Devices</p>
-            <p>✔ 50+ Server Locations</p>
-            <a href="#buy" class="btn">Buy Now</a>
+        
+        <div class="features-grid">
+            <div class="feature-card fade-in">
+                <div class="feature-icon">📱</div>
+                <h3>No Apps Required</h3>
+                <p>Configure directly in Android VPN settings. No downloads, no permissions, no storage space needed.</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">∞</div>
+                <h3>Unlimited Devices</h3>
+                <p>Use the same credentials on all your devices - phones, tablets, laptops. No device restrictions whatsoever.</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">⚡</div>
+                <h3>IKEv2 Protocol</h3>
+                <p>Built-in Android support for lightning-fast connections, auto-reconnect, and superior battery efficiency.</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">⚙️</div>
+                <h3>Easy Setup</h3>
+                <p>Just add server details to Android VPN settings. Connect in under 2 minutes with our simple guide.</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🔋</div>
+                <h3>Battery Friendly</h3>
+                <p>Native IKEv2 protocol uses minimal battery compared to app-based VPNs. Stay connected longer.</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🛡️</div>
+                <h3>Enterprise Security</h3>
+                <p>IPSec encryption with perfect forward secrecy. Bank-level security built into Android itself.</p>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="buy" class="pricing">
-    <h2>Buy Your Plan</h2>
-    <p>Contact us on Telegram to purchase your VPN plan.</p>
-    <a href="https://t.me/yourusername" class="btn">Buy via Telegram</a>
-</section>
+    <section id="pricing" class="pricing">
+        <div class="pricing-container">
+            <div class="section-header">
+                <h2>Choose Your Plan</h2>
+                <p>Flexible pricing options to suit every need and budget</p>
+            </div>
+            
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="plan-name">Basic</div>
+                    <div class="plan-price">$4.99</div>
+                    <div class="plan-period">per month</div>
+                    <ul class="plan-features">
+                        <li>IKEv2 Protocol Only</li>
+                        <li>Unlimited Devices</li>
+                        <li>5 Server Locations</li>
+                        <li>Setup Guide Included</li>
+                        <li>No Apps Required</li>
+                    </ul>
+                    <a href="#contact" class="btn">Get Credentials</a>
+                </div>
+                
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="plan-name">Standard</div>
+                    <div class="plan-price">$8.99</div>
+                    <div class="plan-period">per month</div>
+                    <ul class="plan-features">
+                        <li>IKEv2 Protocol</li>
+                        <li>Unlimited Devices</li>
+                        <li>15 Server Locations</li>
+                        <li>Priority Support</li>
+                        <li>Multiple Server Configs</li>
+                        <li>Backup Servers</li>
+                    </ul>
+                    <a href="#contact" class="btn">Get Credentials</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="plan-name">Premium</div>
+                    <div class="plan-price">$12.99</div>
+                    <div class="plan-period">per month</div>
+                    <ul class="plan-features">
+                        <li>IKEv2 Protocol</li>
+                        <li>Unlimited Devices</li>
+                        <li>25+ Server Locations</li>
+                        <li>Dedicated Support</li>
+                        <li>Custom Configurations</li>
+                        <li>Fastest Servers</li>
+                        <li>24/7 Monitoring</li>
+                    </ul>
+                    <a href="#contact" class="btn">Get Credentials</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<footer>
-    <p>&copy; 2025 SecureVPN. All rights reserved.</p>
-</footer>
+    <section id="faq" class="faq">
+        <div class="section-header">
+            <h2>Frequently Asked Questions</h2>
+            <p>Get answers to common questions about SecureVPN</p>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>What is IKEv2 and why is it better than apps?</span>
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                <p>IKEv2 is built into Android's system. It's faster, uses less battery, reconnects automatically, and doesn't require any third-party apps or permissions.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>How do I set up IKEv2 VPN on Android?</span>
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Go to Settings > VPN > Add VPN Profile > IKEv2/IPSec PSK. Enter our server details and credentials. We provide a complete setup guide with screenshots.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>Is there really no device limit?</span>
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Absolutely! Use the same credentials on unlimited devices - phones, tablets, laptops, routers. No restrictions, no additional costs per device.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>What if my device doesn't support IKEv2?</span>
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                <p>All modern Android devices (6.0+), iOS, Windows, and macOS have native IKEv2 support. For older devices, we can provide alternative configurations.</p>
+            </div>
+        </div>
+    </section>
 
+    <section id="contact" class="contact">
+        <div class="section-header">
+            <h2>Get Your IKEv2 Credentials</h2>
+            <p>No apps to download - just simple server credentials to add to your device settings</p>
+        </div>
+        
+        <div class="contact-methods">
+            <a href="https://t.me/securevpn_support" class="contact-method" target="_blank">
+                <span>📱</span>
+                <div>
+                    <strong>Telegram</strong>
+                    <div>Quick Support & Purchase</div>
+                </div>
+            </a>
+            
+            <a href="mailto:support@securevpn.com" class="contact-method">
+                <span>✉️</span>
+                <div>
+                    <strong>Email</strong>
+                    <div>support@securevpn.com</div>
+                </div>
+            </a>
+            
+            <a href="#" class="contact-method" onclick="openLiveChat()">
+                <span>💬</span>
+                <div>
+                    <strong>Live Chat</strong>
+                    <div>Available 24/7</div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 SecureVPN. All rights reserved. | <a href="#" style="color: #00d4ff;">Privacy Policy</a> | <a href="#" style="color: #00d4ff;">Terms of Service</a></p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('span:last-child');
+            
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                icon.textContent = '+';
+            } else {
+                // Close other open FAQs
+                document.querySelectorAll('.faq-answer.active').forEach(item => {
+                    item.classList.remove('active');
+                    item.previousElementSibling.querySelector('span:last-child').textContent = '+';
+                });
+                
+                answer.classList.add('active');
+                icon.textContent = '-';
+            }
+        }
+
+        // Theme toggle (placeholder)
+        function toggleTheme() {
+            alert('Theme toggle feature coming soon!');
+        }
+
+        // Live chat placeholder
+        function openLiveChat() {
+            alert('Live chat will open here! For now, please use Telegram or email.');
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 15, 0.98)';
+            } else {
+                header.style.background = 'rgba(10, 10, 15, 0.95)';
+            }
+        });
+
+        // Button click effects with loading
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (this.textContent.includes('Start Free Trial')) {
+                    const spinner = this.querySelector('.spinner');
+                    const originalText = this.innerHTML;
+                    
+                    spinner.style.display = 'inline-block';
+                    this.style.opacity = '0.8';
+                    
+                    setTimeout(() => {
+                        spinner.style.display = 'none';
+                        this.style.opacity = '1';
+                    }, 1500);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
