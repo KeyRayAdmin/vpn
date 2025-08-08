@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureVPN - Your Privacy, Our Priority</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1535223289827-42f1e9919769') center/cover no-repeat;
+            color: #fff;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-block;
+            background: #ff6600;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #cc5200;
+        }
+        .pricing {
+            padding: 50px 20px;
+            background: #fff;
+            text-align: center;
+        }
+        .pricing h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .card {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .card h3 {
+            margin-bottom: 10px;
+        }
+        .price {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            color: #ff6600;
+        }
+        footer {
+            background: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        @media(max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#buy">Buy</a>
+        </nav>
+    </header><section class="hero">
+    <h1>SecureVPN</h1>
+    <p>Protect your privacy and access the internet without limits</p>
+    <a href="#pricing" class="btn">Get Started</a>
+</section>
+
+<section id="pricing" class="pricing">
+    <h2>Our Plans</h2>
+    <div class="pricing-cards">
+        <div class="card">
+            <h3>Basic</h3>
+            <p class="price">$5/month</p>
+            <p>✔ Unlimited Bandwidth</p>
+            <p>✔ 1 Device</p>
+            <p>✔ 5 Server Locations</p>
+            <a href="#buy" class="btn">Buy Now</a>
+        </div>
+        <div class="card">
+            <h3>Standard</h3>
+            <p class="price">$10/month</p>
+            <p>✔ Unlimited Bandwidth</p>
+            <p>✔ 3 Devices</p>
+            <p>✔ 20 Server Locations</p>
+            <a href="#buy" class="btn">Buy Now</a>
+        </div>
+        <div class="card">
+            <h3>Premium</h3>
+            <p class="price">$15/month</p>
+            <p>✔ Unlimited Bandwidth</p>
+            <p>✔ 10 Devices</p>
+            <p>✔ 50+ Server Locations</p>
+            <a href="#buy" class="btn">Buy Now</a>
+        </div>
+    </div>
+</section>
+
+<section id="buy" class="pricing">
+    <h2>Buy Your Plan</h2>
+    <p>Contact us on Telegram to purchase your VPN plan.</p>
+    <a href="https://t.me/yourusername" class="btn">Buy via Telegram</a>
+</section>
+
+<footer>
+    <p>&copy; 2025 SecureVPN. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
