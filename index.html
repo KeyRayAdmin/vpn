@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SecureVPN - Your Privacy, Our Priority</title>
+    <title>BlueEdge - No Apps Required IKEv2 VPN</title>
     <style>
         * {
             margin: 0;
@@ -48,6 +48,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            white-space: nowrap;
         }
 
         .nav-links {
@@ -440,12 +441,48 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            nav {
+                padding: 0 1rem;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+                flex-shrink: 0;
+            }
+            
             .nav-links {
                 display: none;
             }
             
+            .theme-toggle {
+                flex-shrink: 0;
+            }
+            
+            .hero {
+                padding: 8rem 1rem 4rem;
+                min-height: 100vh;
+            }
+            
+            .hero-content {
+                margin-top: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+                line-height: 1.1;
+                margin-bottom: 1rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+            
             .hero-stats {
                 gap: 1.5rem;
+                margin: 1.5rem 0;
             }
             
             .stat-number {
@@ -455,26 +492,77 @@
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
+                gap: 1rem;
+                margin-top: 2rem;
             }
             
             .btn {
                 width: 100%;
-                max-width: 300px;
+                max-width: 280px;
                 justify-content: center;
+                padding: 1rem 1.5rem;
+            }
+            
+            .features,
+            .pricing,
+            .faq,
+            .contact {
+                padding: 4rem 1rem;
             }
             
             .features-grid,
             .pricing-cards {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
             
             .pricing-card.popular {
                 transform: none;
+                margin: 0;
             }
             
             .contact-methods {
                 flex-direction: column;
                 align-items: center;
+                gap: 1rem;
+            }
+            
+            .contact-method {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .hero {
+                padding: 6rem 1rem 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .stat {
+                min-width: 120px;
             }
         }
 
@@ -513,7 +601,7 @@
 <body>
     <header>
         <nav>
-            <div class="logo">SecureVPN</div>
+            <div class="logo">BlueEdge</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#features">Features</a></li>
@@ -711,7 +799,7 @@
         </div>
         
         <div class="contact-methods">
-            <a href="https://t.me/securevpn_support" class="contact-method" target="_blank">
+            <a href="https://t.me/blueedge_support" class="contact-method" target="_blank">
                 <span>📱</span>
                 <div>
                     <strong>Telegram</strong>
@@ -719,11 +807,11 @@
                 </div>
             </a>
             
-            <a href="mailto:support@securevpn.com" class="contact-method">
+            <a href="mailto:support@blueedge.com" class="contact-method">
                 <span>✉️</span>
                 <div>
                     <strong>Email</strong>
-                    <div>support@securevpn.com</div>
+                    <div>support@blueedge.com</div>
                 </div>
             </a>
             
@@ -738,7 +826,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 SecureVPN. All rights reserved. | <a href="#" style="color: #00d4ff;">Privacy Policy</a> | <a href="#" style="color: #00d4ff;">Terms of Service</a></p>
+        <p>&copy; 2025 BlueEdge. All rights reserved. | <a href="#" style="color: #00d4ff;">Privacy Policy</a> | <a href="#" style="color: #00d4ff;">Terms of Service</a></p>
     </footer>
 
     <script>
