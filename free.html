@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Plan Credentials - BlueEdge VPN</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            background-color: #0a0a0f;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 8rem 2rem 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-header h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .free-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        /* Credentials Section */
+        .credentials-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .credentials-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .credentials-header h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+        }
+
+        .credentials-header .warning {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            color: #ffc107;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .credential-item {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .credential-label {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .credential-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 212, 255, 0.1);
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            word-break: break-all;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .copy-btn {
+            background: rgba(0, 212, 255, 0.2);
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(0, 212, 255, 0.3);
+        }
+
+        /* Limitations Section */
+        .limitations-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+        }
+
+        .limitations-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #00d4ff;
+            text-align: center;
+        }
+
+        .limitations-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .limitations-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .limitations-list li:last-child {
+            border-bottom: none;
+        }
+
+        .limitations-list li::before {
+            content: '⚠️';
+            position: absolute;
+            left: 0;
+            top: 0.8rem;
+        }
+
+        /* Upgrade Section */
+        .upgrade-section {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 153, 204, 0.1));
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .upgrade-section h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+        }
+
+        .upgrade-section p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .upgrade-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .benefit-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .benefit-item h4 {
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: #ffffff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Setup Instructions */
+        .setup-instructions {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+        }
+
+        .setup-instructions h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #00d4ff;
+            text-align: center;
+        }
+
+        .setup-steps {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .setup-steps li {
+            counter-increment: step-counter;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .setup-steps li:last-child {
+            border-bottom: none;
+        }
+
+        .setup-steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 1rem;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 15, 0.95);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .credentials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .upgrade-benefits {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                padding: 6rem 1rem 2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">BlueEdge</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="index.html#guides">Setup Guide</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="page-header fade-in">
+            <div class="free-badge">FREE PLAN</div>
+            <h1>Your VPN Credentials</h1>
+            <p>Connect to our IKEv2/IPSec MSCHAP v2 VPN using the credentials below</p>
+        </div>
+
+        <section class="credentials-section fade-in">
+            <div class="credentials-header">
+                <h2>Connection Details</h2>
+                <div class="warning">
+                    ⚠️ Keep these credentials private and secure. Do not share them with others.
+                </div>
+            </div>
+            
+            <div class="credentials-grid">
+                <div class="credential-item">
+                    <div class="credential-label">Server Address</div>
+                    <div class="credential-value" id="server-address">vpn-free.blueedge.com</div>
+                    <button class="copy-btn" onclick="copyToClipboard('server-address')">Copy</button>
+                </div>
+                
+                <div class="credential-item">
+                    <div class="credential-label">Username</div>
+                    <div class="credential-value" id="username">free_user_001</div>
+                    <button class="copy-btn" onclick="copyToClipboard('username')">Copy</button>
+                </div>
+                
+                <div class="credential-item">
+                    <div class="credential-label">Password</div>
+                    <div class="credential-value" id="password">BlueEdge2025!</div>
+                    <button class="copy-btn" onclick="copyToClipboard('password')">Copy</button>
+                </div>
+
+                <div class="credential-item">
+                    <div class="credential-label">Protocol</div>
+                    <div class="credential-value">IKEv2/IPSec MSCHAP v2</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="setup-instructions fade-in">
+            <h3>Quick Setup Instructions</h3>
+            <ol class="setup-steps">
+                <li>Go to your device's VPN settings</li>
+                <li>Add a new VPN connection</li>
+                <li>Select "IKEv2" or "IPSec" as the connection type</li>
+                <li>Enter the server address, username, and password from above</li>
+                <li>Save and connect to start browsing securely</li>
+            </ol>
+        </section>
+
+        <section class="limitations-section fade-in">
+            <h3>Free Plan Limitations</h3>
+            <ul class="limitations-list">
+                <li>Speed limited to 10 Mbps</li>
+                <li>1 device connection only</li>
+                <li>Access to 3 server locations</li>
+                <li>Basic customer support</li>
+                <li>No P2P/torrenting allowed</li>
+                <li>Connection may disconnect after 2 hours</li>
+            </ul>
+        </section>
+
+        <section class="upgrade-section fade-in">
+            <h3>Want More? Upgrade to Premium!</h3>
+            <p>Get unlimited speed, multiple device connections, global server access, and priority support with our paid plans.</p>
+            
+            <div class="upgrade-benefits">
+                <div class="benefit-item">
+                    <h4>Unlimited Speed</h4>
+                    <p>No speed restrictions</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>Multiple Devices</h4>
+                    <p>Up to 10 simultaneous connections</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>Global Servers</h4>
+                    <p>50+ server locations worldwide</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>24/7 Support</h4>
+                    <p>Priority customer assistance</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>P2P Allowed</h4>
+                    <p>Safe torrenting and file sharing</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>No Disconnections</h4>
+                    <p>Stable, always-on connections</p>
+                </div>
+            </div>
+            
+            <a href="index.html#pricing" class="btn">Upgrade Now - Starting 5000 MMK/month</a>
+        </section>
+
+        <section class="setup-instructions fade-in">
+            <h3>Need Help? Additional Resources</h3>
+            <ol class="setup-steps">
+                <li>Check our detailed setup guides for your specific device</li>
+                <li>Contact support if you encounter connection issues</li>
+                <li>Test your connection speed after connecting</li>
+                <li>Consider upgrading if you need better performance</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 BlueEdge VPN. No Apps Required IKEv2/IPSec MSCHAP v2 VPN Service.</p>
+    </footer>
+
+    <script>
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const button = element.nextElementSibling;
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.style.background = 'rgba(76, 175, 80, 0.3)';
+                button.style.borderColor = '#4CAF50';
+                button.style.color = '#4CAF50';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = 'rgba(0, 212, 255, 0.2)';
+                    button.style.borderColor = '#00d4ff';
+                    button.style.color = '#00d4ff';
+                }, 2000);
+            }).catch(() => {
+                alert('Could not copy to clipboard. Please copy manually: ' + text);
+            });
+        }
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.fade-in');
+            
+            animateElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 15, 0.98)';
+            } else {
+                header.style.background = 'rgba(10, 10, 15, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
