@@ -356,6 +356,70 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        /* Server Selection Styles */
+        .server-selection {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+        }
+
+        .server-select {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            display: block;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .server-select:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        }
+
+        .server-select option {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .server-select option:disabled {
+            color: #666;
+        }
+
+        .premium-server-notice {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            color: #ffc107;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            text-align: center;
+            display: none;
+        }
+
+        .server-status {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .server-status.free {
+            color: #4CAF50;
+        }
+
+        .server-status.premium {
+            color: #ffc107;
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .nav-links {
@@ -390,6 +454,18 @@
         .fade-in {
             animation: fadeInUp 0.6s ease-out;
         }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                border-color: rgba(255, 193, 7, 0.3);
+            }
+            50% {
+                transform: scale(1.02);
+                border-color: rgba(255, 193, 7, 0.6);
+                box-shadow: 0 0 15px rgba(255, 193, 7, 0.3);
+            }
+        }
     </style>
 </head>
 <body>
@@ -422,10 +498,25 @@
                 </div>
             </div>
             
+            <!-- Server Selection -->
+            <div class="server-selection">
+                <label for="server-select" style="display: block; margin-bottom: 1rem; color: #00d4ff; font-weight: bold; text-align: center; font-size: 1.2rem;">Choose Server Location:</label>
+                <select id="server-select" onchange="updateServerCredentials()" class="server-select">
+                    <option value="sg-free">🇸🇬 Singapore (Free) - Available</option>
+                    <option value="us-free">🇺🇸 United States (Free) - Available</option>
+                    <option value="jp-free">🇯🇵 Japan (Free) - Available</option>
+                    <option value="uk-paid" disabled>🇬🇧 United Kingdom (Premium Only) 🔒</option>
+                    <option value="de-paid" disabled>🇩🇪 Germany (Premium Only) 🔒</option>
+                </select>
+                <div class="premium-server-notice" id="premium-notice">
+                    ⚠️ Premium servers require Basic Plan subscription. <a href="basic-plan-signup.html" style="color: #00d4ff; text-decoration: underline;">Upgrade now</a> to access all server locations!
+                </div>
+            </div>
+
             <div class="credentials-grid">
                 <div class="credential-item">
                     <div class="credential-label">Server Address</div>
-                    <div class="credential-value" id="server-address">vpn-free.blueedge.com</div>
+                    <div class="credential-value" id="server-address">sg-free.blueedge.com</div>
                     <button class="copy-btn" onclick="copyToClipboard('server-address')">Copy</button>
                 </div>
                 
@@ -444,6 +535,18 @@
                 <div class="credential-item">
                     <div class="credential-label">Protocol</div>
                     <div class="credential-value">IKEv2/IPSec MSCHAP v2</div>
+                </div>
+
+                <div class="credential-item">
+                    <div class="credential-label">Server Location</div>
+                    <div class="credential-value" id="server-location">Singapore</div>
+                    <div style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.7;" id="server-status">✅ Free Plan Access</div>
+                </div>
+
+                <div class="credential-item">
+                    <div class="credential-label">Connection Speed</div>
+                    <div class="credential-value" id="connection-speed">Up to 10 Mbps</div>
+                    <div style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.6;">Free Plan Limitation</div>
                 </div>
             </div>
         </section>
@@ -505,6 +608,40 @@
             <a href="index.html#pricing" class="btn">Upgrade Now - Starting 5000 MMK/month</a>
         </section>
 
+        <section class="server-overview fade-in" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 20px; margin-bottom: 3rem;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: #00d4ff; text-align: center;">All Server Locations</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                <div style="background: rgba(76, 175, 80, 0.1); border: 1px solid rgba(76, 175, 80, 0.3); padding: 1rem; border-radius: 10px; text-align: center;">
+                    <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">🇸🇬</div>
+                    <div style="font-weight: bold;">Singapore</div>
+                    <div style="font-size: 0.8rem; color: #4CAF50;">✅ FREE ACCESS</div>
+                </div>
+                <div style="background: rgba(76, 175, 80, 0.1); border: 1px solid rgba(76, 175, 80, 0.3); padding: 1rem; border-radius: 10px; text-align: center;">
+                    <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">🇺🇸</div>
+                    <div style="font-weight: bold;">United States</div>
+                    <div style="font-size: 0.8rem; color: #4CAF50;">✅ FREE ACCESS</div>
+                </div>
+                <div style="background: rgba(76, 175, 80, 0.1); border: 1px solid rgba(76, 175, 80, 0.3); padding: 1rem; border-radius: 10px; text-align: center;">
+                    <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">🇯🇵</div>
+                    <div style="font-weight: bold;">Japan</div>
+                    <div style="font-size: 0.8rem; color: #4CAF50;">✅ FREE ACCESS</div>
+                </div>
+                <div style="background: rgba(255, 193, 7, 0.1); border: 1px solid rgba(255, 193, 7, 0.3); padding: 1rem; border-radius: 10px; text-align: center; opacity: 0.7;">
+                    <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">🇬🇧</div>
+                    <div style="font-weight: bold;">United Kingdom</div>
+                    <div style="font-size: 0.8rem; color: #ffc107;">🔒 PREMIUM ONLY</div>
+                </div>
+                <div style="background: rgba(255, 193, 7, 0.1); border: 1px solid rgba(255, 193, 7, 0.3); padding: 1rem; border-radius: 10px; text-align: center; opacity: 0.7;">
+                    <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">🇩🇪</div>
+                    <div style="font-weight: bold;">Germany</div>
+                    <div style="font-size: 0.8rem; color: #ffc107;">🔒 PREMIUM ONLY</div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem; padding: 1rem; background: rgba(0, 212, 255, 0.1); border-radius: 10px;">
+                <strong>Want access to all servers?</strong> Upgrade to Basic Plan for unlimited server access and faster speeds!
+            </div>
+        </section>
+
         <section class="setup-instructions fade-in">
             <h3>Need Help? Additional Resources</h3>
             <ol class="setup-steps">
@@ -521,6 +658,72 @@
     </footer>
 
     <script>
+        // Server data configuration
+        const servers = {
+            'sg-free': {
+                address: 'sg-free.blueedge.com',
+                location: 'Singapore',
+                status: '✅ Free Plan Access',
+                statusClass: 'free',
+                country: '🇸🇬'
+            },
+            'us-free': {
+                address: 'us-free.blueedge.com',
+                location: 'United States',
+                status: '✅ Free Plan Access',
+                statusClass: 'free',
+                country: '🇺🇸'
+            },
+            'jp-free': {
+                address: 'jp-free.blueedge.com',
+                location: 'Japan',
+                status: '✅ Free Plan Access',
+                statusClass: 'free',
+                country: '🇯🇵'
+            },
+            'uk-paid': {
+                address: 'uk-premium.blueedge.com',
+                location: 'United Kingdom',
+                status: '🔒 Premium Only',
+                statusClass: 'premium',
+                country: '🇬🇧'
+            },
+            'de-paid': {
+                address: 'de-premium.blueedge.com',
+                location: 'Germany',
+                status: '🔒 Premium Only',
+                statusClass: 'premium',
+                country: '🇩🇪'
+            }
+        };
+
+        function updateServerCredentials() {
+            const select = document.getElementById('server-select');
+            const selectedServer = select.value;
+            const serverData = servers[selectedServer];
+            
+            if (serverData) {
+                // Update server address
+                document.getElementById('server-address').textContent = serverData.address;
+                
+                // Update server location
+                document.getElementById('server-location').textContent = serverData.location;
+                
+                // Update server status
+                const statusElement = document.getElementById('server-status');
+                statusElement.textContent = serverData.status;
+                statusElement.className = 'server-status ' + serverData.statusClass;
+                
+                // Show/hide premium notice
+                const premiumNotice = document.getElementById('premium-notice');
+                if (selectedServer.includes('paid')) {
+                    premiumNotice.style.display = 'block';
+                } else {
+                    premiumNotice.style.display = 'none';
+                }
+            }
+        }
+
         function copyToClipboard(elementId) {
             const element = document.getElementById(elementId);
             const text = element.textContent;
@@ -544,6 +747,47 @@
             });
         }
 
+        // Handle disabled option clicks
+        function handleDisabledSelection() {
+            const select = document.getElementById('server-select');
+            const premiumNotice = document.getElementById('premium-notice');
+            
+            select.addEventListener('click', function() {
+                // Show premium notice briefly when clicking on disabled options
+                const selectedIndex = this.selectedIndex;
+                const option = this.options[selectedIndex];
+                
+                if (option.disabled) {
+                    premiumNotice.style.display = 'block';
+                    premiumNotice.style.animation = 'pulse 0.5s ease-in-out';
+                    
+                    // Flash the upgrade message
+                    setTimeout(() => {
+                        premiumNotice.style.animation = '';
+                    }, 500);
+                }
+            });
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize server credentials with default selection
+            updateServerCredentials();
+            
+            // Set up disabled option handling
+            handleDisabledSelection();
+            
+            // Set up animations
+            const animateElements = document.querySelectorAll('.fade-in');
+            
+            animateElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+
         // Add fade-in animation on scroll
         const observerOptions = {
             threshold: 0.1,
@@ -558,17 +802,6 @@
                 }
             });
         }, observerOptions);
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const animateElements = document.querySelectorAll('.fade-in');
-            
-            animateElements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(el);
-            });
-        });
 
         // Header background on scroll
         window.addEventListener('scroll', () => {
