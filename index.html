@@ -253,6 +253,121 @@
             color: #00d4ff;
         }
 
+        /* Guide Section */
+        .guide {
+            padding: 8rem 2rem;
+            background: rgba(0, 212, 255, 0.02);
+        }
+
+        .guide-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .guide-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .guide-tab {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .guide-tab.active {
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            border-color: #00d4ff;
+        }
+
+        .guide-content {
+            display: none;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .guide-content.active {
+            display: block;
+        }
+
+        .guide-steps {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .guide-step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .step-content p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .connection-details {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .connection-details h4 {
+            color: #00d4ff;
+            margin-bottom: 1rem;
+        }
+
+        .connection-details ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .connection-details li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .connection-details li:last-child {
+            border-bottom: none;
+        }
+
+        .connection-details strong {
+            color: #00d4ff;
+            min-width: 120px;
+            display: inline-block;
+        }
+
         /* Pricing Section */
         .pricing {
             padding: 8rem 2rem;
@@ -504,6 +619,7 @@
             }
             
             .features,
+            .guide,
             .pricing,
             .faq,
             .contact {
@@ -535,6 +651,17 @@
             
             .section-header h2 {
                 font-size: 2rem;
+            }
+
+            .guide-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .guide-tab {
+                width: 100%;
+                max-width: 200px;
+                text-align: center;
             }
         }
 
@@ -605,6 +732,7 @@
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#features">Features</a></li>
+                <li><a href="#guide">Setup Guide</a></li>
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -616,7 +744,7 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>No Apps Required - Pure IKEv2 VPN</h1>
-            <p>Connect instantly using your device's built-in VPN settings. No downloads, no installations - just add our IKEv2 configuration to Android settings and enjoy unlimited devices with premium security.</p>
+            <p>Connect instantly using your device's built-in VPN settings. No downloads, no installations - just add our IKEv2/IPSec MSCHAPv2 configuration to device settings and enjoy unlimited devices with premium security.</p>
             
             <div class="hero-stats">
                 <div class="stat">
@@ -635,17 +763,17 @@
             
             <div class="cta-buttons">
                 <a href="#pricing" class="btn">
-                    Start Free Trial
+                    Start Free
                     <div class="spinner"></div>
                 </a>
-                <a href="#features" class="btn btn-secondary">Learn More</a>
+                <a href="#guide" class="btn btn-secondary">Setup Guide</a>
             </div>
         </div>
     </section>
 
     <section id="features" class="features">
         <div class="section-header">
-            <h2>Why Choose IKEv2 VPN?</h2>
+            <h2>Why Choose IKEv2/IPSec MSCHAPv2?</h2>
             <p>Native protocol support means faster connections, better battery life, and zero app requirements</p>
         </div>
         
@@ -653,7 +781,7 @@
             <div class="feature-card fade-in">
                 <div class="feature-icon">📱</div>
                 <h3>No Apps Required</h3>
-                <p>Configure directly in Android VPN settings. No downloads, no permissions, no storage space needed.</p>
+                <p>Configure directly in device VPN settings. No downloads, no permissions, no storage space needed.</p>
             </div>
             
             <div class="feature-card fade-in">
@@ -664,14 +792,14 @@
             
             <div class="feature-card fade-in">
                 <div class="feature-icon">⚡</div>
-                <h3>IKEv2 Protocol</h3>
-                <p>Built-in Android support for lightning-fast connections, auto-reconnect, and superior battery efficiency.</p>
+                <h3>IKEv2/IPSec MSCHAPv2</h3>
+                <p>Built-in device support for lightning-fast connections, auto-reconnect, and superior battery efficiency.</p>
             </div>
             
             <div class="feature-card fade-in">
                 <div class="feature-icon">⚙️</div>
                 <h3>Easy Setup</h3>
-                <p>Just add server details to Android VPN settings. Connect in under 2 minutes with our simple guide.</p>
+                <p>Just add server details to device VPN settings. Connect in under 2 minutes with our simple guide.</p>
             </div>
             
             <div class="feature-card fade-in">
@@ -683,247 +811,121 @@
             <div class="feature-card fade-in">
                 <div class="feature-icon">🛡️</div>
                 <h3>Enterprise Security</h3>
-                <p>IPSec encryption with perfect forward secrecy. Bank-level security built into Android itself.</p>
+                <p>IPSec encryption with MSCHAPv2 authentication. Bank-level security built into your device.</p>
             </div>
         </div>
     </section>
 
-    <section id="pricing" class="pricing">
-        <div class="pricing-container">
+    <section id="guide" class="guide">
+        <div class="guide-container">
             <div class="section-header">
-                <h2>Choose Your Plan</h2>
-                <p>Flexible pricing options to suit every need and budget</p>
+                <h2>Setup Guide</h2>
+                <p>Connect to BlueEdge VPN in just a few simple steps</p>
             </div>
             
-            <div class="pricing-cards">
-                <div class="pricing-card">
-                    <div class="plan-name">Basic</div>
-                    <div class="plan-price">$4.99</div>
-                    <div class="plan-period">per month</div>
-                    <ul class="plan-features">
-                        <li>IKEv2 Protocol Only</li>
-                        <li>Unlimited Devices</li>
-                        <li>5 Server Locations</li>
-                        <li>Setup Guide Included</li>
-                        <li>No Apps Required</li>
-                    </ul>
-                    <a href="#contact" class="btn">Get Credentials</a>
-                </div>
-                
-                <div class="pricing-card popular">
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="plan-name">Standard</div>
-                    <div class="plan-price">$8.99</div>
-                    <div class="plan-period">per month</div>
-                    <ul class="plan-features">
-                        <li>IKEv2 Protocol</li>
-                        <li>Unlimited Devices</li>
-                        <li>15 Server Locations</li>
-                        <li>Priority Support</li>
-                        <li>Multiple Server Configs</li>
-                        <li>Backup Servers</li>
-                    </ul>
-                    <a href="#contact" class="btn">Get Credentials</a>
-                </div>
-                
-                <div class="pricing-card">
-                    <div class="plan-name">Premium</div>
-                    <div class="plan-price">$12.99</div>
-                    <div class="plan-period">per month</div>
-                    <ul class="plan-features">
-                        <li>IKEv2 Protocol</li>
-                        <li>Unlimited Devices</li>
-                        <li>25+ Server Locations</li>
-                        <li>Dedicated Support</li>
-                        <li>Custom Configurations</li>
-                        <li>Fastest Servers</li>
-                        <li>24/7 Monitoring</li>
-                    </ul>
-                    <a href="#contact" class="btn">Get Credentials</a>
-                </div>
+            <div class="guide-tabs">
+                <div class="guide-tab active" onclick="showGuide('android')">Android</div>
+                <div class="guide-tab" onclick="showGuide('ios')">iOS</div>
+                <div class="guide-tab" onclick="showGuide('windows')">Windows</div>
+                <div class="guide-tab" onclick="showGuide('mac')">macOS</div>
             </div>
-        </div>
-    </section>
 
-    <section id="faq" class="faq">
-        <div class="section-header">
-            <h2>Frequently Asked Questions</h2>
-            <p>Get answers to common questions about SecureVPN</p>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>What is IKEv2 and why is it better than apps?</span>
-                <span>+</span>
-            </div>
-            <div class="faq-answer">
-                <p>IKEv2 is built into Android's system. It's faster, uses less battery, reconnects automatically, and doesn't require any third-party apps or permissions.</p>
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>How do I set up IKEv2 VPN on Android?</span>
-                <span>+</span>
-            </div>
-            <div class="faq-answer">
-                <p>Go to Settings > VPN > Add VPN Profile > IKEv2/IPSec PSK. Enter our server details and credentials. We provide a complete setup guide with screenshots.</p>
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>Is there really no device limit?</span>
-                <span>+</span>
-            </div>
-            <div class="faq-answer">
-                <p>Absolutely! Use the same credentials on unlimited devices - phones, tablets, laptops, routers. No restrictions, no additional costs per device.</p>
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>What if my device doesn't support IKEv2?</span>
-                <span>+</span>
-            </div>
-            <div class="faq-answer">
-                <p>All modern Android devices (6.0+), iOS, Windows, and macOS have native IKEv2 support. For older devices, we can provide alternative configurations.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="section-header">
-            <h2>Get Your IKEv2 Credentials</h2>
-            <p>No apps to download - just simple server credentials to add to your device settings</p>
-        </div>
-        
-        <div class="contact-methods">
-            <a href="https://t.me/blueedge_support" class="contact-method" target="_blank">
-                <span>📱</span>
-                <div>
-                    <strong>Telegram</strong>
-                    <div>Quick Support & Purchase</div>
-                </div>
-            </a>
-            
-            <a href="mailto:support@blueedge.com" class="contact-method">
-                <span>✉️</span>
-                <div>
-                    <strong>Email</strong>
-                    <div>support@blueedge.com</div>
-                </div>
-            </a>
-            
-            <a href="#" class="contact-method" onclick="openLiveChat()">
-                <span>💬</span>
-                <div>
-                    <strong>Live Chat</strong>
-                    <div>Available 24/7</div>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 BlueEdge. All rights reserved. | <a href="#" style="color: #00d4ff;">Privacy Policy</a> | <a href="#" style="color: #00d4ff;">Terms of Service</a></p>
-    </footer>
-
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // FAQ Toggle
-        function toggleFAQ(element) {
-            const answer = element.nextElementSibling;
-            const icon = element.querySelector('span:last-child');
-            
-            if (answer.classList.contains('active')) {
-                answer.classList.remove('active');
-                icon.textContent = '+';
-            } else {
-                // Close other open FAQs
-                document.querySelectorAll('.faq-answer.active').forEach(item => {
-                    item.classList.remove('active');
-                    item.previousElementSibling.querySelector('span:last-child').textContent = '+';
-                });
-                
-                answer.classList.add('active');
-                icon.textContent = '-';
-            }
-        }
-
-        // Theme toggle (placeholder)
-        function toggleTheme() {
-            alert('Theme toggle feature coming soon!');
-        }
-
-        // Live chat placeholder
-        function openLiveChat() {
-            alert('Live chat will open here! For now, please use Telegram or email.');
-        }
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe fade-in elements
-        document.querySelectorAll('.fade-in').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(10, 10, 15, 0.98)';
-            } else {
-                header.style.background = 'rgba(10, 10, 15, 0.95)';
-            }
-        });
-
-        // Button click effects with loading
-        document.querySelectorAll('.btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                if (this.textContent.includes('Start Free Trial')) {
-                    const spinner = this.querySelector('.spinner');
-                    const originalText = this.innerHTML;
+            <div id="android-guide" class="guide-content active">
+                <div class="guide-steps">
+                    <div class="guide-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Open VPN Settings</h4>
+                            <p>Go to <strong>Settings → VPN → Add VPN Profile</strong> or tap the "+" icon</p>
+                        </div>
+                    </div>
                     
-                    spinner.style.display = 'inline-block';
-                    this.style.opacity = '0.8';
+                    <div class="guide-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Select VPN Type</h4>
+                            <p>Choose <strong>IKEv2/IPSec MSCHAPv2</strong> from the VPN type dropdown menu</p>
+                        </div>
+                    </div>
                     
-                    setTimeout(() => {
-                        spinner.style.display = 'none';
-                        this.style.opacity = '1';
-                    }, 1500);
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                    <div class="guide-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Enter Connection Details</h4>
+                            <p>Fill in the server information provided after purchase (see connection details box below)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="guide-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Save and Connect</h4>
+                            <p>Tap <strong>Save</strong> and then tap the VPN profile to connect. You should see "Connected" status</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="connection-details">
+                    <h4>Connection Details (Provided after purchase)</h4>
+                    <ul>
+                        <li><strong>Name:</strong> BlueEdge VPN</li>
+                        <li><strong>Type:</strong> IKEv2/IPSec MSCHAPv2</li>
+                        <li><strong>Server:</strong> [Your server address]</li>
+                        <li><strong>Username:</strong> [Your username]</li>
+                        <li><strong>Password:</strong> [Your password]</li>
+                        <li><strong>IPSec ID:</strong> [If required]</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="ios-guide" class="guide-content">
+                <div class="guide-steps">
+                    <div class="guide-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Open VPN Settings</h4>
+                            <p>Go to <strong>Settings → General → VPN & Device Management → VPN → Add VPN Configuration</strong></p>
+                        </div>
+                    </div>
+                    
+                    <div class="guide-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Select IKEv2</h4>
+                            <p>Choose <strong>IKEv2</strong> tab at the top of the screen</p>
+                        </div>
+                    </div>
+                    
+                    <div class="guide-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Configure Settings</h4>
+                            <p>Enter the server details and set Authentication to <strong>Username</strong></p>
+                        </div>
+                    </div>
+                    
+                    <div class="guide-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Connect</h4>
+                            <p>Tap <strong>Done</strong> and toggle the VPN switch to connect</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="windows-guide" class="guide-content">
+                <div class="guide-steps">
+                    <div class="guide-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Open VPN Settings</h4>
+                            <p>Go to <strong>Settings → Network & Internet → VPN → Add a VPN connection</strong></p>
+                        </div>
+                    </div>
+                    
+                    <div class="guide-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Select VPN Provider</h4>
+                            <p
