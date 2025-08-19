@@ -498,20 +498,19 @@
                 </div>
             </div>
             
-            <!-- Server Selection -->
-            <div class="server-selection">
-                <label for="server-select" style="display: block; margin-bottom: 1rem; color: #00d4ff; font-weight: bold; text-align: center; font-size: 1.2rem;">Choose Server Location:</label>
-                <select id="server-select" onchange="updateServerCredentials()" class="server-select">
-                    <option value="sg-free">🇸🇬 Singapore (Free) - Available</option>
-                    <option value="us-free">🇺🇸 United States1 (Free) - Available</option>
-                    <option value="jp-free">🇺🇸 United States 2 (Free) - Available</option>
-                    <option value="uk-paid" disabled>🇸🇬 Singapore (Premium Only) 🔒</option>
-                    <option value="de-paid" disabled>🇯🇵 Japan (Premium Only) 🔒</option>
-                </select>
-                <div class="premium-server-notice" id="premium-notice">
-                    ⚠️ Premium servers require Basic Plan subscription. <a href="basic-plan-signup.html" style="color: #00d4ff; text-decoration: underline;">Upgrade now</a> to access all server locations!
-                </div>
-            </div>
+<!-- Server Selection -->  
+<div class="server-selection">  
+    <label for="server-select" style="display: block; margin-bottom: 1rem; color: #00d4ff; font-weight: bold; text-align: center; font-size: 1.2rem;">Choose Server Location:</label>  
+    <select id="server-select" onchange="updateServerCredentials()" class="server-select">  
+        <option value="sg-free">🇸🇬 Singapore (Free) - Available</option>  
+        <option value="us-free">🇺🇸 United States (Free) - Available</option>  
+        <option value="sg-paid" disabled>🇸🇬 Singapore (Premium) 🔒</option>  
+        <option value="jp-paid" disabled>🇯🇵 Japan (Premium) 🔒</option>  
+    </select>  
+    <div class="premium-server-notice" id="premium-notice">
+        ⚠️ Premium servers require Basic Plan subscription. <a href="basic-plan-signup.html" style="color: #00d4ff; text-decoration: underline;">Upgrade now</a> to access all server locations!
+    </div>
+</div>
 
             <div class="credentials-grid">
                 <div class="credential-item">
@@ -655,43 +654,36 @@
 
     <script>
         // Server data configuration
-        const servers = {
-            'sg-free': {
-                address: 'sg-free.blueedge.com',
-                location: 'Singapore',
-                status: '✅ Free Plan Access',
-                statusClass: 'free',
-                country: '🇸🇬'
-            },
-            'us-free': {
-                address: 'us-free.blueedge.com',
-                location: 'United States',
-                status: '✅ Free Plan Access',
-                statusClass: 'free',
-                country: '🇺🇸'
-            },
-            'jp-free': {
-                address: 'jp-free.blueedge.com',
-                location: 'Japan',
-                status: '✅ Free Plan Access',
-                statusClass: 'free',
-                country: '🇯🇵'
-            },
-            'uk-paid': {
-                address: 'uk-premium.blueedge.com',
-                location: 'United Kingdom',
-                status: '🔒 Premium Only',
-                statusClass: 'premium',
-                country: '🇬🇧'
-            },
-            'de-paid': {
-                address: 'de-premium.blueedge.com',
-                location: 'Germany',
-                status: '🔒 Premium Only',
-                statusClass: 'premium',
-                country: '🇩🇪'
-            }
-        };
+        const servers = {  
+    'sg-free': {  
+        address: 'sg-free.blueedge.com',  
+        location: 'Singapore',  
+        status: '✅ Free Plan Access',  
+        statusClass: 'free',  
+        country: '🇸🇬'  
+    },  
+    'us-free': {  
+        address: 'us-free.blueedge.com',  
+        location: 'United States',  
+        status: '✅ Free Plan Access',  
+        statusClass: 'free',  
+        country: '🇺🇸'  
+    },  
+    'sg-paid': {  
+        address: 'sg-premium.blueedge.com',  
+        location: 'Singapore',  
+        status: '🔒 Premium Only',  
+        statusClass: 'premium',  
+        country: '🇸🇬'  
+    },  
+    'jp-paid': {  
+        address: 'jp-premium.blueedge.com',  
+        location: 'Japan',  
+        status: '🔒 Premium Only',  
+        statusClass: 'premium',  
+        country: '🇯🇵'  
+    }  
+};
 
         function updateServerCredentials() {
             const select = document.getElementById('server-select');
