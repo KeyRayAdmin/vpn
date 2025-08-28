@@ -432,6 +432,8 @@
                 <select id="server-select" onchange="updateServerCredentials()" class="server-select">
                     <option value="sg-free">🇸🇬 Singapore (Free) - Available</option>
                     <option value="us-free">🇺🇸 United States (Free) - Available</option>
+                    <option value="uae-free">🇦🇪 United Arab Emirates
+ (Free) - Available</option>
                     <option value="sg-paid" disabled>🇸🇬 Singapore (Premium) 🔒</option>
                     <option value="jp-paid" disabled>🇯🇵 Japan (Premium) 🔒</option>
                 </select>
@@ -533,6 +535,12 @@
                     <div style="font-weight: bold;">United States (Free)</div>
                     <div style="font-size: 0.8rem; color: #4CAF50;">✅ FREE ACCESS</div>
                 </div>
+                <div style="background: rgba(76, 175, 80, 0.1); border: 1px solid rgba(76, 175, 80, 0.3); padding: 1rem; border-radius: 10px; text-align: center;">
+                    <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">🇦🇪</div>
+                    <div style="font-weight: bold;">United Arab Emirates
+ (Free)</div>
+                    <div style="font-size: 0.8rem; color: #4CAF50;">✅ FREE ACCESS</div>
+                </div>
                 <div style="background: rgba(255, 193, 7, 0.1); border: 1px solid rgba(255, 193, 7, 0.3); padding: 1rem; border-radius: 10px; text-align: center; opacity: 0.7;">
                     <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">🇸🇬</div>
                     <div style="font-weight: bold;">Singapore (Premium)</div>
@@ -577,6 +585,13 @@
                 status: '✅ Free Plan Access',
                 statusClass: 'free',
                 country: '🇺🇸'
+            },
+            'uae-free': {
+                address: 'uae-free.blue-edge.shop',
+                location: 'United Arab Emirates',
+                status: '✅ Free Plan Access',
+                statusClass: 'free',
+                country: '🇦🇪'
             },
             'sg-paid': {
                 address: 'sg-premium.blueedge.com',
