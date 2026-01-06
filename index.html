@@ -21,7 +21,6 @@
             overflow-x: hidden;
         }
 
-        /* အနောက်က လှုပ်ရှားနေတဲ့ အရောင်စက်များ (Background Glow) */
         .glow-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -72,6 +71,7 @@
             margin: 20px auto;
         }
 
+        /* Pricing Grid */
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -98,10 +98,7 @@
             box-shadow: 0 0 30px rgba(0, 242, 254, 0.2);
         }
 
-        /* နာမည်ကြီးသော Plan ကို Highlight လုပ်ခြင်း */
-        .popular {
-            border: 2px solid var(--primary);
-        }
+        .popular { border: 2px solid var(--primary); }
         .popular::before {
             content: "POPULAR";
             position: absolute;
@@ -128,12 +125,72 @@
         .features-list li { margin: 12px 0; display: flex; align-items: center; }
         .features-list li::before { content: "✓"; color: var(--primary); margin-right: 10px; font-weight: bold; }
 
-        .tg-contact {
-            text-align: center;
-            margin: 60px 0;
-            padding: 30px;
+        /* Proof Section Grid */
+        .proof-section {
+            width: 90%;
+            max-width: 1100px;
+            margin: 80px auto;
         }
 
+        .proof-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .proof-card {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .proof-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: zoom-in;
+            transition: 0.3s;
+        }
+
+        .proof-card img:hover { transform: scale(1.03); }
+
+        /* Overlay Zoom (Lightbox) */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+            animation: zoomIn 0.3s ease;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 30px; right: 40px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .tg-contact { text-align: center; margin: 60px 0; padding: 30px; }
         .tg-btn {
             display: inline-flex;
             align-items: center;
@@ -145,7 +202,6 @@
             font-weight: 600;
             transition: 0.3s;
         }
-
         .tg-btn:hover { background: #00aaff; transform: translateY(-3px); }
 
     </style>
@@ -201,18 +257,48 @@
         </div>
     </div>
 
+    <section class="proof-section">
+        <h2 style="text-align: center; margin-bottom: 40px; font-size: 2rem; color: var(--primary);">Customer Proofs</h2>
+        <div class="proof-container">
+            <div class="proof-card">
+                <img src="proof1.jpg" alt="Proof 1" onclick="openLightbox(this.src)">
+                <p>"Hysteria 2 ကတော့ တကယ့် Game changer ပဲ"</p>
+            </div>
+            <div class="proof-card">
+                <img src="proof2.jpg" alt="Proof 2" onclick="openLightbox(this.src)">
+                <p>"ယုံကြည်စိတ်ချရတဲ့ Service ပါ"</p>
+            </div>
+            <div class="proof-card">
+                <img src="proof3.jpg" alt="Proof 3" onclick="openLightbox(this.src)">
+                <p>"Ping တည်ငြိမ်လို့ အရမ်းကြိုက်တယ်"</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+        <span class="close-btn">&times;</span>
+        <img id="lightbox-img" src="" alt="Zoomed Image">
+    </div>
+
     <div class="tg-contact">
         <p style="color: #94a3b8; margin-bottom: 20px;">Need Help or Special Request?</p>
-        <a href="https://t.me/andrew_com_mm" class="tg-btn">
-            Contact Admin: @andrew_com_mm
+        <a href="https://t.me/YOUR_USERNAME" class="tg-btn">
+            Contact Admin: @YOUR_USERNAME
         </a>
     </div>
 
     <script>
         function orderPlan(plan, price) {
-            const username = "andrew_com_mm"; // သင့် Username ပြောင်းရန်
+            const username = "YOUR_USERNAME"; 
             const text = `Mingalarpar Admin, I would like to purchase the ${plan} Plan (${price} MMK).`;
             window.location.href = `https://t.me/${username}?text=${encodeURIComponent(text)}`;
+        }
+
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = src;
+            lightbox.style.display = 'flex';
         }
     </script>
 
