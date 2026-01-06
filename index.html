@@ -30,11 +30,11 @@
 
         header {
             text-align: center;
-            padding: 80px 20px 40px;
+            padding: 60px 20px 40px;
         }
 
         h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 800;
             margin: 0;
             background: linear-gradient(to right, #fff, var(--primary));
@@ -52,51 +52,38 @@
             border-radius: 20px;
             font-size: 0.8rem;
             margin-bottom: 20px;
-            border: 1px solid rgba(0, 255, 136, 0.3);
         }
 
         .status-dot {
             height: 8px; width: 8px;
             background-color: #00ff88;
             border-radius: 50%;
-            display: inline-block;
             margin-right: 8px;
             box-shadow: 0 0 10px #00ff88;
         }
 
-        .protocol-text {
-            color: #94a3b8;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 20px auto;
-        }
-
-        /* Pricing Grid */
+        /* Pricing Section */
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
             width: 90%;
             max-width: 1100px;
-            margin: 50px auto;
+            margin: 30px auto;
         }
 
         .card {
             background: var(--card-bg);
             border-radius: 24px;
-            padding: 40px;
+            padding: 30px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.3s ease;
             cursor: pointer;
             position: relative;
         }
 
-        .card:hover {
-            transform: scale(1.05);
-            border-color: var(--primary);
-            box-shadow: 0 0 30px rgba(0, 242, 254, 0.2);
-        }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
 
         .popular { border: 2px solid var(--primary); }
         .popular::before {
@@ -106,104 +93,85 @@
             transform: translateX(-50%);
             background: var(--primary);
             color: #000;
-            padding: 2px 15px;
-            border-radius: 10px;
+            padding: 2px 12px;
+            border-radius: 8px;
             font-size: 0.7rem;
             font-weight: bold;
         }
 
-        .gb-text { font-size: 3rem; font-weight: 800; margin: 0; }
-        .price-text { font-size: 1.5rem; color: var(--primary); margin: 10px 0; }
+        .gb-text { font-size: 2.5rem; font-weight: 800; margin: 0; }
+        .price-text { font-size: 1.3rem; color: var(--primary); margin: 10px 0; }
 
-        .features-list {
-            margin: 25px 0;
-            padding: 0;
-            list-style: none;
-            color: #94a3b8;
-            text-align: left;
-        }
-        .features-list li { margin: 12px 0; display: flex; align-items: center; }
-        .features-list li::before { content: "✓"; color: var(--primary); margin-right: 10px; font-weight: bold; }
-
-        /* Proof Section Grid */
-        .proof-section {
+        /* Slider Section */
+        .slider-section {
             width: 90%;
             max-width: 1100px;
-            margin: 80px auto;
-        }
-
-        .proof-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .proof-card {
-            background: var(--card-bg);
-            padding: 15px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin: 60px auto;
             text-align: center;
         }
 
-        .proof-card img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 10px;
-            cursor: zoom-in;
-            transition: 0.3s;
+        .slider-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 20px;
+            padding: 20px 0;
+            scrollbar-width: none; /* Firefox */
         }
 
-        .proof-card img:hover { transform: scale(1.03); }
+        .slider-container::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 
-        /* Overlay Zoom (Lightbox) */
+        .slide-card {
+            flex: 0 0 280px;
+            scroll-snap-align: center;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .slide-card img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            cursor: zoom-in;
+        }
+
+        /* Lightbox Overlay */
         .lightbox {
             display: none;
             position: fixed;
             z-index: 9999;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95);
             justify-content: center;
             align-items: center;
         }
 
         .lightbox img {
             max-width: 90%;
-            max-height: 80%;
+            max-height: 85%;
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
             animation: zoomIn 0.3s ease;
         }
 
-        .close-btn {
-            position: absolute;
-            top: 30px; right: 40px;
-            color: white;
-            font-size: 40px;
-            cursor: pointer;
-        }
-
         @keyframes zoomIn {
-            from { transform: scale(0.5); opacity: 0; }
+            from { transform: scale(0.8); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
 
-        .tg-contact { text-align: center; margin: 60px 0; padding: 30px; }
+        .tg-contact { text-align: center; margin: 50px 0; }
         .tg-btn {
             display: inline-flex;
             align-items: center;
             background: #0088cc;
             color: white;
-            padding: 15px 35px;
+            padding: 15px 30px;
             border-radius: 15px;
             text-decoration: none;
             font-weight: 600;
-            transition: 0.3s;
         }
-        .tg-btn:hover { background: #00aaff; transform: translateY(-3px); }
-
     </style>
 </head>
 <body>
@@ -211,86 +179,56 @@
     <div class="glow-bg"></div>
 
     <header>
-        <div class="status-badge">
-            <span class="status-dot"></span> Server Status: High Performance
-        </div>
+        <div class="status-badge"><span class="status-dot"></span> Server Status: Online</div>
         <h1>Buy VPN Key</h1>
-        <p class="protocol-text">
-            Experience the next level of internet freedom with 
-            <b style="color: var(--primary);">Hysteria 2 Protocol</b>. 
-            Engineered for the best congestion control and ultra-low latency.
+        <p style="color: #94a3b8; max-width: 600px; margin: 20px auto;">
+            Hysteria 2 Protocol: Best for congestion control & ultra-low latency.
         </p>
     </header>
 
     <div class="pricing-grid">
         <div class="card" onclick="orderPlan('50GB', '5,000')">
-            <p style="color: #94a3b8;">Starter</p>
             <h2 class="gb-text">50GB</h2>
             <div class="price-text">၅,၀၀၀ ကျပ်</div>
-            <ul class="features-list">
-                <li>30 Days Validity</li>
-                <li>Hysteria 2 Protocol</li>
-                <li>Direct Telegram Support</li>
-            </ul>
+            <p style="color: #94a3b8;">Starter Plan</p>
         </div>
 
         <div class="card popular" onclick="orderPlan('100GB', '10,000')">
-            <p style="color: #94a3b8;">Recommended</p>
             <h2 class="gb-text">100GB</h2>
             <div class="price-text">၁၀,၀၀၀ ကျပ်</div>
-            <ul class="features-list">
-                <li>30 Days Validity</li>
-                <li>Priority Server Access</li>
-                <li>Best for Netflix & YouTube</li>
-            </ul>
+            <p style="color: #94a3b8;">Recommended</p>
         </div>
 
         <div class="card" onclick="orderPlan('150GB', '15,000')">
-            <p style="color: #94a3b8;">Power User</p>
             <h2 class="gb-text">150GB</h2>
             <div class="price-text">၁၅,၀၀၀ ကျပ်</div>
-            <ul class="features-list">
-                <li>30 Days Validity</li>
-                <li>Max Speed Unleashed</li>
-                <li>Multi-device Support</li>
-            </ul>
+            <p style="color: #94a3b8;">Power User</p>
         </div>
     </div>
 
-    <section class="proof-section">
-        <h2 style="text-align: center; margin-bottom: 40px; font-size: 2rem; color: var(--primary);">Customer Proofs</h2>
-        <div class="proof-container">
-            <div class="proof-card">
-                <img src="Messenger_creation_a078b175-2998-44f2-8b47-66a157d71015.jpeg" alt="Proof 1" onclick="openLightbox(this.src)">
-                <p>"Hysteria 2 ကတော့ တကယ့် Game changer ပဲ"</p>
-            </div>
-            <div class="proof-card">
-                <img src="Messenger_creation_a078b175-2998-44f2-8b47-66a157d71015.jpeg" alt="Proof 2" onclick="openLightbox(this.src)">
-                <p>"ယုံကြည်စိတ်ချရတဲ့ Service ပါ"</p>
-            </div>
-            <div class="proof-card">
-                <img src="Messenger_creation_a078b175-2998-44f2-8b47-66a157d71015.jpeg" alt="Proof 3" onclick="openLightbox(this.src)">
-                <p>"Ping တည်ငြိမ်လို့ အရမ်းကြိုက်တယ်"</p>
-            </div>
+    <div class="slider-section">
+        <h2 style="color: var(--primary);">Customer Proofs</h2>
+        <p style="color: #64748b; font-size: 0.9rem;">( Swipe to see more )</p>
+        <div class="slider-container">
+            <div class="slide-card"><img src="proof1.jpg" onclick="openLightbox(this.src)"></div>
+            <div class="slide-card"><img src="proof2.jpg" onclick="openLightbox(this.src)"></div>
+            <div class="slide-card"><img src="proof3.jpg" onclick="openLightbox(this.src)"></div>
+            <div class="slide-card"><img src="proof4.jpg" onclick="openLightbox(this.src)"></div>
         </div>
-    </section>
+    </div>
 
     <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-        <span class="close-btn">&times;</span>
-        <img id="lightbox-img" src="" alt="Zoomed Image">
+        <img id="lightbox-img" src="">
     </div>
 
     <div class="tg-contact">
-        <p style="color: #94a3b8; margin-bottom: 20px;">Need Help or Special Request?</p>
-        <a href="https://t.me/YOUR_USERNAME" class="tg-btn">
-            Contact Admin: @YOUR_USERNAME
-        </a>
+        <a href="https://t.me/YOUR_USERNAME" class="tg-btn">Contact Admin: @YOUR_USERNAME</a>
     </div>
 
     <script>
         function orderPlan(plan, price) {
             const username = "YOUR_USERNAME"; 
-            const text = `Mingalarpar Admin, I would like to purchase the ${plan} Plan (${price} MMK).`;
+            const text = `Mingalarpar Admin, I want to buy ${plan} Plan (${price} MMK).`;
             window.location.href = `https://t.me/${username}?text=${encodeURIComponent(text)}`;
         }
 
