@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hysteria 2 - Premium VPN</title>
+    <title>Hysteria 2 - Premium VPN Service</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -11,6 +11,7 @@
             --secondary: #4facfe;
             --bg: #0b0f19;
             --card-bg: #161e2d;
+            --accent: #00ff88;
         }
 
         body {
@@ -30,147 +31,172 @@
 
         header {
             text-align: center;
-            padding: 60px 20px 40px;
+            padding: 60px 20px 30px;
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 8vw, 4rem);
             font-weight: 800;
             margin: 0;
             background: linear-gradient(to right, #fff, var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.3));
+        }
+
+        /* Server Location Badge */
+        .server-status-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
         }
 
         .status-badge {
-            display: inline-flex;
-            align-items: center;
             background: rgba(0, 255, 136, 0.1);
-            color: #00ff88;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-bottom: 20px;
+            color: var(--accent);
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            display: flex;
+            align-items: center;
         }
 
-        .status-dot {
-            height: 8px; width: 8px;
-            background-color: #00ff88;
-            border-radius: 50%;
-            margin-right: 8px;
-            box-shadow: 0 0 10px #00ff88;
+        .location-badge {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 15px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
         }
 
-        /* Pricing Section */
+        .flag-icon { width: 20px; margin-right: 8px; }
+
+        /* Free Trial Button */
+        .trial-section {
+            text-align: center;
+            margin: 20px 0 40px;
+        }
+
+        .trial-btn {
+            background: transparent;
+            color: var(--primary);
+            border: 2px border;
+            border: 2px solid var(--primary);
+            padding: 12px 25px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .trial-btn:hover {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+        }
+
+        /* Pricing */
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             width: 90%;
             max-width: 1100px;
-            margin: 30px auto;
+            margin: 0 auto;
         }
 
         .card {
             background: var(--card-bg);
             border-radius: 24px;
-            padding: 30px;
+            padding: 35px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: 0.3s ease;
+            transition: 0.4s;
             cursor: pointer;
             position: relative;
         }
 
         .card:hover { transform: translateY(-10px); border-color: var(--primary); }
-
         .popular { border: 2px solid var(--primary); }
         .popular::before {
             content: "POPULAR";
             position: absolute;
             top: -12px; left: 50%;
             transform: translateX(-50%);
-            background: var(--primary);
-            color: #000;
-            padding: 2px 12px;
-            border-radius: 8px;
-            font-size: 0.7rem;
-            font-weight: bold;
+            background: var(--primary); color: #000;
+            padding: 2px 12px; border-radius: 8px; font-size: 0.7rem; font-weight: bold;
         }
 
-        .gb-text { font-size: 2.5rem; font-weight: 800; margin: 0; }
-        .price-text { font-size: 1.3rem; color: var(--primary); margin: 10px 0; }
+        .gb-text { font-size: 3rem; font-weight: 800; margin: 0; }
+        .price-text { font-size: 1.5rem; color: var(--primary); margin: 10px 0; }
 
-        /* Slider Section */
+        /* Slider */
         .slider-section {
-            width: 90%;
-            max-width: 1100px;
-            margin: 60px auto;
-            text-align: center;
+            width: 90%; max-width: 1100px; margin: 80px auto; text-align: center;
         }
 
         .slider-container {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 20px;
-            padding: 20px 0;
-            scrollbar-width: none; /* Firefox */
+            display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+            gap: 20px; padding: 20px 0; scrollbar-width: none;
         }
 
-        .slider-container::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+        .slider-container::-webkit-scrollbar { display: none; }
 
         .slide-card {
-            flex: 0 0 280px;
-            scroll-snap-align: center;
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            flex: 0 0 260px; scroll-snap-align: center;
+            background: var(--card-bg); border-radius: 20px; padding: 10px;
         }
 
         .slide-card img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 15px;
-            cursor: zoom-in;
+            width: 100%; height: 400px; object-fit: cover; border-radius: 15px; cursor: zoom-in;
         }
 
-        /* Lightbox Overlay */
+        /* Lightbox */
         .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 9999;
+            display: none; position: fixed; z-index: 10000;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            justify-content: center;
-            align-items: center;
+            background: rgba(0, 0, 0, 0.9); justify-content: center; align-items: center;
         }
 
-        .lightbox img {
-            max-width: 90%;
-            max-height: 85%;
-            border-radius: 10px;
-            animation: zoomIn 0.3s ease;
+        .lightbox img { max-width: 90%; max-height: 85%; animation: zoomIn 0.3s; }
+
+        @keyframes zoomIn { from { transform: scale(0.8); } to { transform: scale(1); } }
+
+        /* Info Section */
+        .info-section {
+            width: 90%; max-width: 1100px; margin: 60px auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
         }
 
-        @keyframes zoomIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+        .guide-item {
+            display: flex; align-items: center; background: var(--card-bg);
+            padding: 15px; margin-bottom: 12px; border-radius: 15px;
         }
 
-        .tg-contact { text-align: center; margin: 50px 0; }
+        .guide-item span {
+            background: var(--primary); color: #000; width: 30px; height: 30px;
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            font-weight: bold; margin-right: 15px;
+        }
+
+        details { background: var(--card-bg); margin-bottom: 10px; padding: 15px; border-radius: 15px; cursor: pointer; }
+
+        .tg-contact { text-align: center; margin: 80px 0; }
         .tg-btn {
-            display: inline-flex;
-            align-items: center;
-            background: #0088cc;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 15px;
-            text-decoration: none;
-            font-weight: 600;
+            background: #0088cc; color: white; padding: 18px 40px;
+            border-radius: 20px; text-decoration: none; font-weight: 600;
+            display: inline-flex; align-items: center; transition: 0.3s;
+        }
+        .tg-btn:hover { background: #00aaff; transform: scale(1.05); }
+
+        @media (max-width: 768px) {
+            .info-section { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -179,57 +205,99 @@
     <div class="glow-bg"></div>
 
     <header>
-        <div class="status-badge"><span class="status-dot"></span> Server Status: Online</div>
         <h1>Buy VPN Key</h1>
-        <p style="color: #94a3b8; max-width: 600px; margin: 20px auto;">
-            Hysteria 2 Protocol: Best for congestion control & ultra-low latency.
+        <div class="server-status-container">
+            <div class="status-badge">● Server Online</div>
+            <div class="location-badge">
+                <img src="https://flagcdn.com/w40/sg.png" class="flag-icon" alt="SG Flag"> 
+                Server: Singapore (SG)
+            </div>
+        </div>
+        <p style="color: #94a3b8; margin: 25px auto; max-width: 600px;">
+            Hysteria 2 Protocol: Best for congestion control & ultra-low latency. 
+            Gaming နဲ့ Streaming အတွက် အထူးသင့်လျော်ပါသည်။
         </p>
     </header>
+
+    <div class="trial-section">
+        <a href="javascript:void(0)" class="trial-btn" onclick="contactAdmin('Free Trial စမ်းသုံးကြည့်ချင်လို့ပါခင်ဗျာ')">
+            🎁 စမ်းသပ်အသုံးပြုရန် (Free Trial)
+        </a>
+    </div>
 
     <div class="pricing-grid">
         <div class="card" onclick="orderPlan('50GB', '5,000')">
             <h2 class="gb-text">50GB</h2>
             <div class="price-text">၅,၀၀၀ ကျပ်</div>
             <p style="color: #94a3b8;">Starter Plan</p>
+            <p style="font-size: 0.8rem; margin-top: 15px;">✓ Click to Buy</p>
         </div>
 
         <div class="card popular" onclick="orderPlan('100GB', '10,000')">
             <h2 class="gb-text">100GB</h2>
             <div class="price-text">၁၀,၀၀၀ ကျပ်</div>
             <p style="color: #94a3b8;">Recommended</p>
+            <p style="font-size: 0.8rem; margin-top: 15px;">✓ Click to Buy</p>
         </div>
 
         <div class="card" onclick="orderPlan('150GB', '15,000')">
             <h2 class="gb-text">150GB</h2>
             <div class="price-text">၁၅,၀၀၀ ကျပ်</div>
             <p style="color: #94a3b8;">Power User</p>
+            <p style="font-size: 0.8rem; margin-top: 15px;">✓ Click to Buy</p>
         </div>
     </div>
 
     <div class="slider-section">
         <h2 style="color: var(--primary);">Customer Proofs</h2>
-        <p style="color: #64748b; font-size: 0.9rem;">( Swipe to see more )</p>
+        <p style="color: #64748b; font-size: 0.8rem; margin-bottom: 20px;">( Swipe left/right to view )</p>
         <div class="slider-container">
-            <div class="slide-card"><img src="Messenger_creation_a078b175-2998-44f2-8b47-66a157d71015.jpeg" onclick="openLightbox(this.src)"></div>
-            <div class="slide-card"><img src="Messenger_creation_a078b175-2998-44f2-8b47-66a157d71015.jpeg" onclick="openLightbox(this.src)"></div>
-            <div class="slide-card"><img src="Messenger_creation_a078b175-2998-44f2-8b47-66a157d71015.jpeg" onclick="openLightbox(this.src)"></div>
-            <div class="slide-card"><img src="Messenger_creation_a078b175-2998-44f2-8b47-66a157d71015.jpeg" onclick="openLightbox(this.src)"></div>
+            <div class="slide-card"><img src="proof1.jpg" onclick="openLightbox(this.src)"></div>
+            <div class="slide-card"><img src="proof2.jpg" onclick="openLightbox(this.src)"></div>
+            <div class="slide-card"><img src="proof3.jpg" onclick="openLightbox(this.src)"></div>
+            <div class="slide-card"><img src="proof4.jpg" onclick="openLightbox(this.src)"></div>
         </div>
     </div>
+
+    <section class="info-section">
+        <div class="setup-guide">
+            <h2 style="color: var(--primary);">How to Setup?</h2>
+            <div class="guide-item"><span>1</span><p>App ဒေါင်းရန် (v2rayNG / Shadowrocket)</p></div>
+            <div class="guide-item"><span>2</span><p>Admin ထံမှ Key ဝယ်ယူပါ</p></div>
+            <div class="guide-item"><span>3</span><p>Key ကို Copy ကူးပြီး App ထဲတွင် Import လုပ်ပါ</p></div>
+        </div>
+        <div class="faq-section">
+            <h2 style="color: var(--primary);">FAQs</h2>
+            <details><summary>ဂိမ်းဆော့ရင် Ping တက်လား?</summary><p>Hysteria 2 သည် Gaming အတွက် Latency အနည်းဆုံးဖြစ်အောင် ပြုလုပ်ထားပါသည်။</p></details>
+            <details><summary>Service ယုံကြည်ရလား?</summary><p>Proof ပုံများတွင် ဝယ်ယူသူများ၏ Feedback ကို ကြည့်ရှုနိုင်ပါသည်။</p></details>
+        </div>
+    </section>
 
     <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
         <img id="lightbox-img" src="">
     </div>
 
     <div class="tg-contact">
-        <a href="https://t.me/YOUR_USERNAME" class="tg-btn">Contact Admin: @YOUR_USERNAME</a>
+        <p style="color: #94a3b8; margin-bottom: 20px;">မရှင်းလင်းသည်များရှိပါက Admin ကို တိုက်ရိုက်မေးမြန်းနိုင်ပါသည်</p>
+        <a href="javascript:void(0)" class="tg-btn" onclick="contactAdmin('Mingalarpar Admin, အသေးစိတ်လေး သိချင်လို့ပါ')">
+            Contact Admin: @YOUR_USERNAME
+        </a>
     </div>
 
     <script>
+        const TELEGRAM_USERNAME = "YOUR_USERNAME"; // သင့် Username ဤနေရာတွင် ပြောင်းပါ
+
         function orderPlan(plan, price) {
-            const username = "YOUR_USERNAME"; 
             const text = `Mingalarpar Admin, I want to buy ${plan} Plan (${price} MMK).`;
-            window.location.href = `https://t.me/${username}?text=${encodeURIComponent(text)}`;
+            sendToTelegram(text);
+        }
+
+        function contactAdmin(customText) {
+            sendToTelegram(customText);
+        }
+
+        function sendToTelegram(message) {
+            window.location.href = `https://t.me/${TELEGRAM_USERNAME}?text=${encodeURIComponent(message)}`;
         }
 
         function openLightbox(src) {
@@ -239,6 +307,5 @@
             lightbox.style.display = 'flex';
         }
     </script>
-
 </body>
 </html>
